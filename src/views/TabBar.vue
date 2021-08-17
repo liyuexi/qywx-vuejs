@@ -8,9 +8,9 @@
             <p class="weui-tabbar__label qywx-tabbar-item">登录</p>
         </router-link>
 
-        <router-link  to="/jssdk" class="weui-tabbar__item" active-class="weui-bar__item_on">
+        <router-link  to="/demo" class="weui-tabbar__item" active-class="weui-bar__item_on">
             <!-- <span class="weui-tabbar__icon"  ></span> -->
-            <p class="weui-tabbar__label qywx-tabbar-item">jssdk</p>
+            <p class="weui-tabbar__label qywx-tabbar-item">Demo</p>
         </router-link>
 
         <router-link  to="/user" class="weui-tabbar__item" active-class="weui-bar__item_on">

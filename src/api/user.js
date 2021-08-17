@@ -19,6 +19,41 @@ export function oauthUser(query) {
 }
 
 
+export function deptList(query) {
+  return request({
+    url: '/contact/departmentList',
+    method: 'get',
+    params: query 
+  })
+}
+
+
+export function deptUserList(query) {
+  return request({
+    url: '/contact/deptUserList',
+    method: 'get',
+    params: query 
+  })
+}
+
+export function deptUserDetailList(query) {
+  return request({
+    url: '/contact/deptUserDetailList',
+    method: 'get',
+    params: query 
+  })
+}
+
+
+export function deptUserDetail(query) {
+  return request({
+    url: '/contact/useDetail',
+    method: 'get',
+    params: query 
+  })
+}
+
+
 export function wxJsSign(query) {
   return request({
     url: '/WeixinAuth/wxJsSign',

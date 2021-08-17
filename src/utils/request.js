@@ -5,7 +5,7 @@ import router from '../router'
 
 // 创建axios实例
 const service = axios.create({
-  baseURL: "http://api.ant-xy.com:9900", // api的base_url
+  baseURL: import.meta.env.VITE_API_URL, // api的base_url
   timeout: 15000, // 请求超时时间
   withCredentials: false,
 })

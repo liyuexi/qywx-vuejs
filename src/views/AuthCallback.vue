@@ -42,8 +42,8 @@ export default {
     }
   },
    methods: {
-      ...mapActions('login', [
-      'login'
+      ...mapActions('setUserToken', [
+      'setUserToken'
      ]),
      getOauthUser(){
        
@@ -54,7 +54,10 @@ export default {
    
         oauthUser(params).then((res)=>{
           console.log(res)
-         // window.location.href = res.data.oauth_url
+          //进行存储
+          setUserToken(res.data.token)
+          setUserInfo(res.data)
+          // window.lorcation.href = res.data.oauth_url
         });
      }
    },

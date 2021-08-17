@@ -2,7 +2,9 @@ import {createRouter,createWebHashHistory} from 'vue-router'
 import Layout from '../views/Layout.vue'
 import Auth from '../views/Auth.vue'
 import AuthCallback from '../views/AuthCallback.vue'
+import Demo from '../views/Demo.vue'
 import Jssdk from '../views/Jssdk.vue'
+import Contact from '../views/Contact.vue'
 import User from '../views/User.vue'
 
 // 不重定向白名单
@@ -43,7 +45,24 @@ const routes = [
         // children: [
          
         // ],
-  
+      {
+          path: 'demo', 
+          name: 'Demo',
+          component: Demo ,
+          meta: {
+           title: 'demo',
+           keepAlive: true,
+         },
+       },
+       {
+        path: 'contact', 
+        name: 'Contact',
+        component: Contact ,
+        meta: {
+         title: 'contact',
+         keepAlive: true,
+       },
+     },
       {
          path: 'jssdk', 
          name: 'Jssdk',
