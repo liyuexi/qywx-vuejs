@@ -3,7 +3,7 @@ ToB Dev 李月喜专注B端企业服务开发；
 加开发同行群及咨询联系"li570467731";  
 获取更多教程及分享关注公众号“tob dev”;  
 
-## 自建内部应用  
+## 企业微信自建内部应用  
 自建内部应用视频教程：  
 https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzA5ODcyODY0Nw==&action=getalbum&album_id=1745513894715916289#wechat_redirect
 自建内部应用demo源码：  

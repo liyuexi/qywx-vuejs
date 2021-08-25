@@ -10,11 +10,18 @@
                   <a href="javascript:" class="weui-btn weui-btn_mini weui-btn_primary" @click="userProfile">个人信息</a>      
                   <a href="javascript:" class="weui-btn weui-btn_mini weui-btn_primary" @click="chooseUser">选人</a>           
                    <a href="javascript:" class="weui-btn weui-btn_mini weui-btn_primary" @click="scanQr">扫一扫</a>           
-                  <a href="javascript:" class="weui-btn weui-btn_mini weui-btn_primary" @click="chooseImg">拍照</a>
-                  <a href="javascript:" class="weui-btn weui-btn_mini weui-btn_primary" @click="shareWx">分享到微信</a>                                                  
+                  <a href="javascript:" class="weui-btn weui-btn_mini weui-btn_primary" @click="chooseCus">选客户</a>                                          
              </div>
             </div>
-        </div>
+         </div>
+      <div class="weui-flex">   
+            <div class="weui-flex__item">
+              <div class="placeholder">
+                  <a href="javascript:" class="weui-btn weui-btn_mini weui-btn_primary" @click="chooseImg">拍照</a>    
+                  <a href="javascript:" class="weui-btn weui-btn_mini weui-btn_primary" @click="download">下载临时素材</a>                                                  
+             </div>
+            </div>             
+       </div>
 
     </div>
 </div>
@@ -22,7 +29,9 @@
 
 <script>
 
-import {jsSign} from '../api/jssdk'
+import {jsSign,jsAgentSign} from '../api/jssdk'
+
+
 export default {
   name: 'Jssdk',
 
@@ -31,7 +40,6 @@ export default {
   },
    methods: {
       userProfile(){
-
          wx.invoke('openUserProfile', {
                   "type": 1, //1表示该userid是企业成员，2表示该userid是外部联系人
                   "userid": "LiYueXi" //可以是企业成员，也可以是外部联系人
@@ -43,17 +51,60 @@ export default {
 
       },
       scanQr(){
-
+         wx.scanQRCode({
+            desc: 'scanQRCode desc',
+            needResult: 0, // 默认为0，扫描结果由企业微信处理，1则直接返回扫描结果，
+            scanType: ["qrCode", "barCode"], // 可以指定扫二维码还是条形码（一维码），默认二者都有
+            success: function(res) {
+               // 回调
+            },
+            error: function(res) {
+               if (res.errMsg.indexOf('function_not_exist') > 0) {
+                     alert('版本过低请升级')
+               }
+            }
+         });
+      },
+      chooseCus(){
+         wx.invoke('selectExternalContact', {
+                        "filterType": 0, //0表示展示全部外部联系人列表，1表示仅展示未曾选择过的外部联系人。默认值为0；除了0与1，其他值非法。在企业微信2.4.22及以后版本支持该参数
+               }, function(res){
+               if(res.err_msg == "selectExternalContact:ok"){
+                     userIds  = res.userIds ; //返回此次选择的外部联系人userId列表，数组类型
+               }else {
+                     //错误处理
+               }
+            });
+            
       },
       chooseImg(){
-
+         wx.chooseImage({
+            count: 1, // 默认9
+            sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+            sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+            defaultCameraMode: "batch", //表示进入拍照界面的默认模式，目前有normal与batch两种选择，normal表示普通单拍模式，batch表示连拍模式，不传该参数则为normal模式。从3.0.26版本开始支持front和batch_front两种值，其中front表示默认为前置摄像头单拍模式，batch_front表示默认为前置摄像头连拍模式。（注：用户进入拍照界面仍然可自由切换两种模式）
+            isSaveToAlbum: 1, //整型值，0表示拍照时不保存到系统相册，1表示自动保存，默认值是1
+            success: function (res) {
+               var localIds = res.localIds; // 返回选定照片的本地ID列表，
+               // andriod中localId可以作为img标签的src属性显示图片；
+               // iOS应当使用 getLocalImgData 获取图片base64数据，从而用于img标签的显示（在img标签内使用 wx.chooseImage 的 localid 显示可能会不成功）
+               wx.uploadImage({
+                  localId: localIds[0], // 需要上传的图片的本地ID，由chooseImage接口获得
+                  isShowProgressTips: 1, // 默认为1，显示进度提示
+                  success: function (res) {
+                     var serverId = res.serverId; // 返回图片的服务器端ID
+                     //通知服务端下载到并存储自身服务器或者云端
+                  }
+               });
+            }
+         });
       },
       shareWx(){
             wx.invoke(
                "shareWechatMessage", {
                         title: '分享标题', // 分享标题
                         desc: '分享标题', // 分享描述
-                        link: '', // 分享链接
+                        link: 'https://www.baidu.com', // 分享链接
                         imgUrl: '' // 分享封面
             }, function(res) {
                if (res.err_msg == "shareWechatMessage:ok") {
@@ -109,12 +160,33 @@ export default {
                nonceStr: res.data.nonceStr, // 必填，生成签名的随机串
                signature: res.data.signature,// 必填，签名，见 附录-JS-SDK使用权限签名算法
                jsApiList: ['openUserProfile','selectEnterpriseContact','chooseImage','scanQRCode','shareWechatMessage'] // 必填，需要使用的JS接口列表，凡是要调用的接口都需要传进来
+           
             });
          })
 
          wx.ready(function(){
+            jsAgentSign(params).then((res)=>{
+                 wx.agentConfig({
+                     corpid: res.data.corpId, // 必填，企业微信的corpid，必须与当前登录的企业一致
+                     agentid: res.data.agentId, // 必填，企业微信的应用id （e.g. 1000247）
+                     timestamp: res.data.timestamp, // 必填，生成签名的时间戳
+                     nonceStr: res.data.nonceStr, // 必填，生成签名的随机串
+                     signature: res.data.signature,// 必填，签名，见附录-JS-SDK使用权限签名算法
+                     jsApiList: ['selectExternalContact'], //必填，传入需要使用的接口名称
+                     success: function(res) {
+                        // 回调
+                        console.log(res);
+                     },
+                     fail: function(res) {
+                        if(res.errMsg.indexOf('function not exist') > -1){
+                              alert('版本过低请升级')
+                        }
+                     }
+                  });
+                  
+             })
              wx.checkJsApi({
-               jsApiList: ['selectEnterpriseContact','chooseImage','scanQRCode','shareWechatMessage'], // 需要检测的JS接口列表，所有JS接口列表见附录2,
+               jsApiList: ['selectEnterpriseContact','selectExternalContact','chooseImage','scanQRCode','shareWechatMessage'], // 需要检测的JS接口列表，所有JS接口列表见附录2,
                success: function(res) {
                   console.log(res)
                   // 以键值对的形式返回，可用的api值true，不可用为false
