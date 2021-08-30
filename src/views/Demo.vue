@@ -19,19 +19,34 @@
             </div>
         </div>
 
+         <div class="weui-flex">
+            <div class="weui-flex__item">
+              <div class="placeholder">
+              <a class="weui-btn weui-btn_mini weui-btn_primary" @click="sendMsgText" >发送应用消息</a>
+             </div>
+            </div>
+        </div>
+
     </div>
 </div>
  </template>
 
 <script>
+import {sendMsg} from '../api/user'
+
 export default {
-  name: 'Jssdk',
+  name: 'Demo',
 
   created() {
 	  
   },
    methods: {
-	
+    sendMsgText(){
+        let params = {'to_user_id':"LiYueXi",'text':"hello tobdev liyuexi"}
+        sendMsg(params).then((res)=>{
+           
+         }) 
+    }
    },
 }
 </script>

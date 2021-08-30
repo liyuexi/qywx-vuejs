@@ -62,6 +62,17 @@ export function wxJsSign(query) {
   })
 }
 
+
+export function sendMsg(query) {
+  return request({
+    url: '/message/sendtext',
+    method: 'post',
+    data: query 
+  })
+}
+
+
+
 export function uploadMedia(query) {
   return request({
     url: '/WeixinAuth/uploadMedia',

@@ -24,8 +24,12 @@ service.interceptors.request.use(config => {
   //     }
   //   }
   // }
-
-  config.params['corp_id'] = 'wwe58c8eb857ded23d';
+  if(config.method=="post"){
+    config.data['corp_id'] = 'wwe58c8eb857ded23d';
+  }else{
+    config.params['corp_id'] = 'wwe58c8eb857ded23d';
+  }
+ 
   return config
   
 }, error => {
