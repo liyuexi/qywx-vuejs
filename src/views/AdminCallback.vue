@@ -25,11 +25,11 @@
 
  <script>
 import { mapGetters, mapActions } from 'vuex'
-import { oauthUser } from '../api/user'
+import { oauthAdminUser } from '../api/user'
 import { queryString } from '../utils/index'
 
 export default {
-  name: 'Auth',
+  name: 'AdminCallback',
   created() {
     
   },
@@ -47,12 +47,10 @@ export default {
      ]),
      getOauthUser(){
        
-        //console.log(this.$route.params)
-        //console.log(this.$route.query)
+ 
         
-       let params = {'code': queryString('code')}
-   
-        oauthUser(params).then((res)=>{
+       let params = {'code': this.$route.query.code}
+        oauthAdminUser(params).then((res)=>{
           console.log(res)
           //进行存储
           setUserToken(res.data.token)

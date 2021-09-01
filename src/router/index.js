@@ -2,6 +2,7 @@ import {createRouter,createWebHashHistory} from 'vue-router'
 import Layout from '../views/Layout.vue'
 import Auth from '../views/Auth.vue'
 import AuthCallback from '../views/AuthCallback.vue'
+import AdminCallback from '../views/AdminCallback.vue'
 import Demo from '../views/Demo.vue'
 import Jssdk from '../views/Jssdk.vue'
 import Contact from '../views/Contact.vue'
@@ -42,6 +43,17 @@ const routes = [
             keepAlive: true,
         },
       },
+      {
+        path: 'adminCallback',
+        name: 'AdminCallback',
+        component: AdminCallback,
+        meta: {
+            title: '登录',
+            keepAlive: true,
+        },
+      },
+      
+
         // children: [
          
         // ],

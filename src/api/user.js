@@ -18,6 +18,26 @@ export function oauthUser(query) {
   })
 }
 
+export function oauthAdminUrl(query) {
+  return request({
+    url: '/admin/oauthUrl',
+    method: 'get',
+    params: query 
+  })
+}
+
+export function oauthAdminUser(query) {
+  return request({
+    url: '/admin/oauthUser',
+    method: 'get',
+    params: query 
+  })
+}
+
+
+
+
+
 
 export function deptList(query) {
   return request({
@@ -54,14 +74,6 @@ export function deptUserDetail(query) {
 }
 
 
-export function wxJsSign(query) {
-  return request({
-    url: '/WeixinAuth/wxJsSign',
-    method: 'get',
-    params: query 
-  })
-}
-
 
 export function sendMsg(query) {
   return request({
@@ -72,14 +84,6 @@ export function sendMsg(query) {
 }
 
 
-
-export function uploadMedia(query) {
-  return request({
-    url: '/WeixinAuth/uploadMedia',
-    method: 'post',
-    data: query 
-  })
-}
 
 
 

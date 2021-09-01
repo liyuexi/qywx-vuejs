@@ -19,13 +19,22 @@
             </div>
         </div>
 
-         <div class="weui-flex">
+        <div class="weui-flex">
             <div class="weui-flex__item">
               <div class="placeholder">
               <a class="weui-btn weui-btn_mini weui-btn_primary" @click="sendMsgText" >发送应用消息</a>
              </div>
             </div>
-        </div>
+         </div>
+
+
+        <div class="weui-flex">
+            <div class="weui-flex__item">
+              <div class="placeholder">
+              <a class="weui-btn weui-btn_mini weui-btn_primary" @click="sendMsgText" >素材管理</a>
+             </div>
+            </div>
+         </div>
 
     </div>
 </div>
