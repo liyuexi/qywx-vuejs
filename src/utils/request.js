@@ -24,12 +24,16 @@ service.interceptors.request.use(config => {
   //     }
   //   }
   // }
+  let corpId = import.meta.env.VITE_CORP_ID
   if(config.method=="post"){
-    config.data['corp_id'] = 'wwe58c8eb857ded23d';
+    if(config.data instanceof FormData){
+      config.data.append('corp_id',corpId);
+    }
+    config.data['corp_id'] = corpId;
   }else{
-    config.params['corp_id'] = 'wwe58c8eb857ded23d';
+    config.params['corp_id'] = corpId;
   }
- 
+ console.log(config);
   return config
   
 }, error => {

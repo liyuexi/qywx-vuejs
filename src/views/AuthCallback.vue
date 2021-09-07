@@ -34,16 +34,16 @@ export default {
     
   },
   computed: {
-    ...mapGetters('user', {
-      userToken: 'userToken',
-    }),
+    ...mapGetters([
+    'userToken',
+    ]),
     url(){
       return window.location.href
     }
   },
    methods: {
-      ...mapActions('setUserToken', [
-      'setUserToken'
+      ...mapActions([
+      'saveUser', 
      ]),
      getOauthUser(){
        
@@ -55,9 +55,9 @@ export default {
         oauthUser(params).then((res)=>{
           console.log(res)
           //进行存储
-          setUserToken(res.data.token)
-          setUserInfo(res.data)
-          // window.lorcation.href = res.data.oauth_url
+          this.saveUser(res.data)
+          this.$router.push("/user");
+          alert(  JSON.stringify(res)  )
         });
      }
    },

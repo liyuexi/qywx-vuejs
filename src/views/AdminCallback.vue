@@ -6,6 +6,7 @@
         <p class="page__desc">当前url: {{ url}}</p>
     </div>
     <div class="page__bd page__bd_spacing">
+       
         <div class="weui-flex">
             <div class="weui-flex__item">
               <div class="placeholder">
@@ -34,27 +35,26 @@ export default {
     
   },
   computed: {
-    ...mapGetters('user', {
-      userToken: 'userToken',
-    }),
+    ...mapGetters([
+    'userToken',
+    ]),
     url(){
       return window.location.href
     }
   },
    methods: {
-      ...mapActions('setUserToken', [
-      'setUserToken'
+     ...mapActions([
+      'saveUser', 
      ]),
      getOauthUser(){
        
- 
-        
        let params = {'code': this.$route.query.code}
         oauthAdminUser(params).then((res)=>{
           console.log(res)
           //进行存储
-          setUserToken(res.data.token)
-          setUserInfo(res.data)
+            this.saveUser(res.data)
+            alert(  JSON.stringify(res)  )
+            this.$router.push("/user");
           // window.lorcation.href = res.data.oauth_url
         });
      }

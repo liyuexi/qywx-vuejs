@@ -75,14 +75,6 @@ export function deptUserDetail(query) {
 
 
 
-export function sendMsg(query) {
-  return request({
-    url: '/message/sendtext',
-    method: 'post',
-    data: query 
-  })
-}
-
 
 
 

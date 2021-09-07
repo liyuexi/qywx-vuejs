@@ -1,17 +1,24 @@
-export function uploadMedia(query) {
+import request from '../utils/request'
+
+
+  export function uploadMedia(query) {
+ 
     return request({
       url: '/media/upload',
       method: 'post',
-      data: query 
+      data: query ,
+      headers:{'Content-Type':'multipart/form-data'},
     })
   }
   
 
-  export function uploadMedia(query) {
+
+  export function uploadImg(query) {
     return request({
-      url: '/media/upload-img',
+      url: '/media/uploadImg',
       method: 'post',
-      data: query 
+      data: query ,
+      headers:{'Content-Type':'multipart/form-data'},
     })
   }
   
@@ -19,8 +26,8 @@ export function uploadMedia(query) {
   export function downloadMedia(query) {
     return request({
       url: '/media/download',
-      method: 'post',
-      data: query 
+      method: 'get',
+      params: query 
     })
   }
     

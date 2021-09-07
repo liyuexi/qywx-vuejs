@@ -7,6 +7,9 @@ import Demo from '../views/Demo.vue'
 import Jssdk from '../views/Jssdk.vue'
 import Contact from '../views/Contact.vue'
 import User from '../views/User.vue'
+import Media from '../views/Media.vue'
+import Message from '../views/Message.vue'
+import Agent from '../views/Agent.vue'
 
 // 不重定向白名单
 const noUserWhiteList = [];
@@ -52,8 +55,7 @@ const routes = [
             keepAlive: true,
         },
       },
-      
-
+    
         // children: [
          
         // ],
@@ -85,6 +87,33 @@ const routes = [
         },
       },
       {
+        path: 'media', 
+        name: 'Media',
+        component: Media ,
+        meta: {
+         title: 'media',
+         keepAlive: true,
+       },
+      },
+      {
+        path: 'message', 
+        name: 'Message',
+        component: Message ,
+        meta: {
+         title: 'Message',
+         keepAlive: true,
+        },
+      },
+      {
+        path: 'agent', 
+        name: 'Agent',
+        component: Agent ,
+        meta: {
+         title: 'agent',
+         keepAlive: true,
+        },
+      },
+      {
         path: 'user', 
         name: 'User',
         component: User ,
@@ -113,9 +142,9 @@ router.beforeEach((to, from, next) => {
     //登录状放行
     
     //非登录态
-    if (noUserWhiteList.includes(topath)){
+    // if (noUserWhiteList.includes(topath)){
 
-    }
+    // }
     next()
 })
 

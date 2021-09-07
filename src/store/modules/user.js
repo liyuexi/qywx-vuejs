@@ -7,6 +7,7 @@ const state = () => ({
 // getters
 const getters = {
     userInfo: (state, getters) => {
+      
         return state.userInfo
     },
     userToken: (state, getters) => {
@@ -16,8 +17,8 @@ const getters = {
 
 // actions
 const actions = {
-  async saveUser ({ commit, state }, userToken,userInfo) {
-    commit('setUserToken', userToken)
+  async saveUser ({ commit, state }, userInfo) {
+    commit('setUserToken', userInfo.token)
     commit('setUserInfo', userInfo)
   },
 }
@@ -33,7 +34,7 @@ const mutations = {
 }
 
 export default {
-  namespaced: true,
+ // namespaced: true,
   state,
   getters,
   actions,
