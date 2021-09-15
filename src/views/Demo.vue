@@ -43,8 +43,13 @@
             </div>
          </div>
 
-
-
+        <div class="weui-flex">
+            <div class="weui-flex__item">
+              <div class="placeholder">
+                  <router-link to="/schoolContact" class="weui-btn weui-btn_mini weui-btn_primary">家校沟通</router-link>
+             </div>
+            </div>
+        </div>
 
     </div>
 </div>

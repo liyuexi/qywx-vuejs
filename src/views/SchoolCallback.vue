@@ -29,7 +29,7 @@ import { oauthUser } from '../api/user'
 import { queryString } from '../utils/index'
 
 export default {
-  name: 'AuthCallback',
+  name: 'SchoolCallback',
   created() {
     
   },

@@ -10,7 +10,7 @@
         <div class="weui-flex">
             <div class="weui-flex__item">
               <div class="placeholder">
-                <a href="javascript:" class="weui-btn weui-btn_mini weui-btn_primary" @click="getOauthUrl">跳转企业微信应用Oauth授权</a>
+                <a href="javascript:" class="weui-btn weui-btn_mini weui-btn_primary" @click="getOauthUrl">H5应用OAuth授权登录</a>
              </div>
             </div>
         </div>
@@ -18,10 +18,18 @@
          <div class="weui-flex">
             <div class="weui-flex__item">
               <div class="placeholder">
-                <a href="javascript:" class="weui-btn weui-btn_mini weui-btn_primary" @click="getAdminOauthUrl">PC 网站扫码授权登录</a>
+                <a href="javascript:" class="weui-btn weui-btn_mini weui-btn_primary" @click="getAdminOauthUrl">PC网站扫码OAuth授权登录</a>
              </div>
             </div>
         </div>
+
+         <div class="weui-flex">
+            <div class="weui-flex__item">
+              <div class="placeholder">
+                <a href="javascript:" class="weui-btn weui-btn_mini weui-btn_primary" @click="getShcoolOauthUrl">家校沟通OAuth授权登录</a>
+             </div>
+            </div>
+         </div>
 
             <div class="weui-flex">
             <div class="weui-flex__item">
@@ -73,7 +81,16 @@ export default {
           alert(res.data.oauth_url)
          window.location.href = res.data.oauth_url
         });
-     }
+     },
+     getShcoolOauthUrl(){
+        let oauthCallback =  encodeURI(window.location.protocol+'//'+window.location.host+"/#/schoolCallback") 
+       //console.log(oauthCallback)
+       let params = {'oauth_callback': oauthCallback}
+        oauthAdminUrl(params).then((res)=>{
+          alert(res.data.oauth_url)
+          window.location.href = res.data.oauth_url
+        });
+     },
    },
 }
 </script>
