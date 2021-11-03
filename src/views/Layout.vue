@@ -2,7 +2,7 @@
      <div  class="container">
         <router-view ></router-view>
         <br/>
-          <div class="weui-footer">
+        <div class="weui-footer">
             <p class="weui-footer__links">
                 <a href="javascript:" class="weui-footer__link">公众号：ToB Dev</a>
             </p>

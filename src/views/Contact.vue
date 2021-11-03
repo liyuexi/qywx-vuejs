@@ -12,27 +12,42 @@
             </div>
         </div>
          <div class="weui-flex">
+            <div class="weui-flex__item"> 
+                <div class="placeholder">
+                       <input v-model="deptId" placeholder="输入部门id" /> 
+                 </div>
+            </div>       
             <div class="weui-flex__item">
               <div class="placeholder">
-                    <input v-model="deptId" placeholder="输入部门id" /> 
                     <a href="javascript:" class="weui-btn weui-btn_mini weui-btn_primary" @click="getDeptUserList">获取部门人员</a>   
              </div>
             </div>
         </div>
         
         <div class="weui-flex">
+             <div class="weui-flex__item"> 
+                <div class="placeholder">
+                        <input v-model="deptId" placeholder="输入部门id" /> 
+                 </div>
+            </div>       
+
             <div class="weui-flex__item">
               <div class="placeholder">
-                    <input v-model="deptId" placeholder="输入部门id" /> 
                     <a href="javascript:" class="weui-btn weui-btn_mini weui-btn_primary" @click="getDeptUserDetailList">获取部门人员详情</a>   
              </div>
             </div>
         </div>
 
         <div class="weui-flex">
+              <div class="weui-flex__item"> 
+                <div class="placeholder">
+                       <input v-model="userId" placeholder="输入用户id" /> 
+                 </div>
+            </div>       
+
             <div class="weui-flex__item">
               <div class="placeholder">
-                    <input v-model="userId" placeholder="输入用户id" /> 
+                  
                     <a href="javascript:" class="weui-btn weui-btn_mini weui-btn_primary" @click="getDeptUserDetail">获取人员详情</a>   
              </div>
             </div>

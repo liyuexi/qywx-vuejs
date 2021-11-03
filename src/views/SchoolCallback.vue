@@ -25,7 +25,7 @@
 
  <script>
 import { mapGetters, mapActions } from 'vuex'
-import { oauthUser } from '../api/user'
+import  {oauthUser  as schoolOauthUser } from '../api/school'
 import { queryString } from '../utils/index'
 
 export default {
@@ -51,8 +51,7 @@ export default {
         //console.log(this.$route.query)
         
        let params = {'code': queryString('code')}
-   
-        oauthUser(params).then((res)=>{
+        schoolOauthUser(params).then((res)=>{
           console.log(res)
           //进行存储
           this.saveUser(res.data)

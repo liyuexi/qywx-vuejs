@@ -34,25 +34,6 @@ export function oauthAdminUser(query) {
   })
 }
 
-
-export function schoolOauthUrl(query) {
-  return request({
-    url: '/h5/oauthUrl',
-    method: 'get',
-    params: query 
-  })
-}
-
-export function schoolOauthUser(query) {
-  return request({
-    url: '/h5/oauthUser',
-    method: 'get',
-    params: query 
-  })
-}
-
-
-
 export function deptList(query) {
   return request({
     url: '/contact/departmentList',
@@ -86,12 +67,5 @@ export function deptUserDetail(query) {
     params: query 
   })
 }
-
-
-
-
-
-
-
 
 

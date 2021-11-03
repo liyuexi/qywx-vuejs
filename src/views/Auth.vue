@@ -45,7 +45,8 @@
 
  <script>
 import { mapGetters, mapActions } from 'vuex'
-import { oauthUrl ,oauthAdminUrl} from '../api/user'
+import { oauthUrl ,oauthAdminUrl } from '../api/user'
+import  {oauthUrl  as schoolOauthUrl } from '../api/school'
 
 export default {
   name: 'Auth',
@@ -86,7 +87,7 @@ export default {
         let oauthCallback =  encodeURI(window.location.protocol+'//'+window.location.host+"/#/schoolCallback") 
        //console.log(oauthCallback)
        let params = {'oauth_callback': oauthCallback}
-        oauthAdminUrl(params).then((res)=>{
+        schoolOauthUrl(params).then((res)=>{
           alert(res.data.oauth_url)
           window.location.href = res.data.oauth_url
         });

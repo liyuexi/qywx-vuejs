@@ -4,6 +4,7 @@ import Auth from '../views/Auth.vue'
 import AuthCallback from '../views/AuthCallback.vue'
 import AdminCallback from '../views/AdminCallback.vue'
 import SchoolCallback from '../views/SchoolCallback.vue'
+import SchoolContact from '../views/School.vue'
 import Demo from '../views/Demo.vue'
 import Jssdk from '../views/Jssdk.vue'
 import Contact from '../views/Contact.vue'
@@ -11,6 +12,8 @@ import User from '../views/User.vue'
 import Media from '../views/Media.vue'
 import Message from '../views/Message.vue'
 import Agent from '../views/Agent.vue'
+import Oa from '../views/Oa.vue'
+import ExtContact from '../views/ExtContact.vue'
 
 // 不重定向白名单
 const noUserWhiteList = [];
@@ -121,6 +124,33 @@ const routes = [
         component: Agent ,
         meta: {
          title: 'agent',
+         keepAlive: true,
+        },
+      },
+      {
+        path: 'extContact', 
+        name: 'ExtContact',
+        component: ExtContact ,
+        meta: {
+         title: 'extContact',
+         keepAlive: true,
+        },
+      },
+      {
+        path: 'schoolContact', 
+        name: 'SchoolContact',
+        component: SchoolContact ,
+        meta: {
+         title: 'schoolContact',
+         keepAlive: true,
+        },
+      },
+      {
+        path: 'oa', 
+        name: 'Oa',
+        component: Oa ,
+        meta: {
+         title: 'oa',
          keepAlive: true,
         },
       },
