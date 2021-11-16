@@ -1,22 +1,22 @@
 <template>
 <div class="page">
     <div class="page__hd">
-        <h1 class="page__title" > Oa </h1>
+        <h1 class="page__title" > 效率工具 </h1>
     </div>
     <div class="page__bd page__bd_spacing">
 
          <div class="weui-flex">
             <div class="weui-flex__item">
               <div class="placeholder">
-                    <input v-model="thirdNo" placeholder="组织者" /> 
-                    <input v-model="thirdNo" placeholder="日历简介" /> 
-                    <input v-model="thirdNo" placeholder="日历颜色" /> 
-                     <input v-model="thirdNo" placeholder="日历共享成员" /> 
+                    <input v-model="organize_user_id" placeholder="组织者" /> 
+                    <input v-model="summary" placeholder="日历简介" /> 
+                    <input v-model="color" placeholder="日历颜色" /> 
+                     <input v-model="share_user_id_str" placeholder="日历共享成员" /> 
              </div>
             </div>  
             <div class="weui-flex__item">
               <div class="placeholder">
-                  <a href="javascript:" class="weui-btn weui-btn_mini weui-btn_primary" @click="getAprrovalState">创建日历</a>                                           
+                  <a href="javascript:" class="weui-btn weui-btn_mini weui-btn_primary" @click="addCalendar">创建日历</a>                                           
              </div>
             </div>
          </div>
@@ -24,28 +24,26 @@
         <div class="weui-flex">
             <div class="weui-flex__item">
               <div class="placeholder">
-                    <input v-model="thirdNo" placeholder="组织者" /> 
+                    <input v-model="calendar_id" placeholder="日历id" /> 
              </div>
             </div>  
             <div class="weui-flex__item">
               <div class="placeholder">
-                  <a href="javascript:" class="weui-btn weui-btn_mini weui-btn_primary" @click="getAprrovalState">获取日历详情</a>                                           
+                  <a href="javascript:" class="weui-btn weui-btn_mini weui-btn_primary" @click="getCalendar">获取日历详情</a>                                           
              </div>
             </div>
          </div>
-
-
 
          <div class="weui-flex">
             <div class="weui-flex__item">
               <div class="placeholder">
-                    <input v-model="thirdNo" placeholder="日历id" />
+                    <input v-model="calendar_id" placeholder="日历id" />
              </div>
             </div>  
 
             <div class="weui-flex__item">
               <div class="placeholder">
-                  <a href="javascript:" class="weui-btn weui-btn_mini weui-btn_primary" @click="getAprrovalState">获取日历下的日程列表</a>                                           
+                  <a href="javascript:" class="weui-btn weui-btn_mini weui-btn_primary" @click="getScheduleList">获取日历下的日程列表</a>                                           
              </div>
             </div>
          </div>
@@ -53,15 +51,17 @@
         <div class="weui-flex">
         <div class="weui-flex__item">
             <div class="placeholder">
-                <input v-model="thirdNo" placeholder="组织者" /> 
-                <input v-model="thirdNo" placeholder="日程简介" /> 
-                <input v-model="thirdNo" placeholder="日程其它" /> 
-                    <input v-model="thirdNo" placeholder="日程参与者" /> 
+                     <input v-model="calendar_id" placeholder="日历id" /> 
+                     <input v-model="organize_user_id" placeholder="日程组织者" /> 
+                     <input v-model="summary" placeholder="日程简介" /> 
+                     <input v-model="attends_str" placeholder="日程参与者" /> 
+                     <input v-model="start_time" placeholder="开始时间" /> 
+                     <input v-model="end_time" placeholder="结束时间" /> 
             </div>
         </div>  
         <div class="weui-flex__item">
             <div class="placeholder">
-                <a href="javascript:" class="weui-btn weui-btn_mini weui-btn_primary" @click="getAprrovalState">创建日程</a>                                           
+                <a href="javascript:" class="weui-btn weui-btn_mini weui-btn_primary" @click="addSchedule">创建日程</a>                                           
             </div>
         </div>
         </div>
@@ -69,13 +69,49 @@
         <div class="weui-flex">
             <div class="weui-flex__item">
               <div class="placeholder">
-                    <input v-model="thirdNo" placeholder="组织者" /> 
+                    <input v-model="schedule_id" placeholder="日程id" /> 
              </div>
             </div>  
 
             <div class="weui-flex__item">
               <div class="placeholder">
-                  <a href="javascript:" class="weui-btn weui-btn_mini weui-btn_primary" @click="getAprrovalState">获取日程详情</a>                                           
+                  <a href="javascript:" class="weui-btn weui-btn_mini weui-btn_primary" @click="getSchedule">获取日程详情</a>                                           
+             </div>
+            </div>
+         </div>
+
+         <div class="weui-flex">
+            <div class="weui-flex__item">
+              <div class="placeholder">
+                     <input v-model="type" placeholder="会议类型" /> 
+                     <input v-model="organize_user_id" placeholder="日程组织者" /> 
+                     <input v-model="title" placeholder="会议标题" /> 
+                     <input v-model="start_time" placeholder="会议开始时间" /> 
+                     <input v-model="duration" placeholder="会议时长" /> 
+                     <input v-model="attends_str" placeholder="会议参与者" /> 
+             </div>
+            </div>  
+
+            <div class="weui-flex__item">
+              <div class="placeholder">
+                  <a href="javascript:" class="weui-btn weui-btn_mini weui-btn_primary" @click="addMeeting">添加会议</a>                                           
+             </div>
+            </div>
+         </div>
+
+         <div class="weui-flex">
+            <div class="weui-flex__item">
+              <div class="placeholder">
+                     <input v-model="metting_id" placeholder="会议id" /> 
+                      <input v-model="user_id" placeholder="用户id" /> 
+                     
+             </div>
+            </div>  
+
+            <div class="weui-flex__item">
+              <div class="placeholder">
+                  <a href="javascript:" class="weui-btn weui-btn_mini weui-btn_primary" @click="getMeetingDetail">获取会议详情</a>       
+                  <a href="javascript:" class="weui-btn weui-btn_mini weui-btn_primary" @click="getUserMeeting">获取会议详情</a>                                       
              </div>
             </div>
          </div>
@@ -88,118 +124,132 @@
 <script>
 
 import {jsSign,jsAgentSign} from '../api/jssdk'
-import {aprrovalFlowInit,approvalFlowStatus} from '../api/oa'
+import {addCalendar,getCalendar,addSchedule,getScheduleList,getSchedule,addMeeting,getMeetingDetail,getUserMeeting} from '../api/efficiency'
 
 export default {
-  name: 'Oa',
+  name: 'Efficiency',
   data () {
       return {
-          templateId: '',
-          thirdNo:'',
+          organize_user_id: '',
+          share_user_id_str:'',
+          summary:'',
+          color:'',
+          calendar_id:'',
+          attends_str:'',
+          start_time:parseInt(new Date().getTime()/1000)+60,
+          schedule_id:'',
+
+           type:'1',
+           title:'',
+           end_time:parseInt(new Date().getTime()/1000)+120,
+          duration:'120',
+          metting_id:'',
+          user_id:'',
+
       }
   },
   created() {
-    this.getJsSign()
-    this.initAprroval()
   },
    methods: {
-      initAprroval(){
-         let params = {}
-         aprrovalFlowInit(params).then((res)=>{
-               this.templateId = res.data.templateId
-               this.thirdNo =  res.data.thirdNo
+      
+      addCalendar(){
+         let shareStrArr = this.share_user_id_str.split(",")
+         let shareUserArr = shareStrArr.map(function(item,index){
+            let json = {}
+            json.userid = item;
+            return json
+         });
+         let params = {
+            summary:this.summary,
+            color:this.color,
+            organizer:this.organize_user_id,
+            shares:shareUserArr,
+         }
+         addCalendar(params).then((res)=>{
+               this.calendar_id =  res.data.cal_id
          });
       },
-      getAprrovalState(){
-         let params = {'third_no':this.thirdNo}
-         approvalFlowStatus(params).then((res)=>{
+
+      getCalendar(){
+         let params = {'calendar_id':this.calendar_id}
+         getCalendar(params).then((res)=>{
                 console.log(res)
                 alert(  JSON.stringify(res)  )
          });
       },
-      createAprroval(){
-         wx.invoke('thirdPartyOpenPage', {
-            "oaType": "10001",// String
-            "templateId": this.templateId,// String
-            "thirdNo": this.thirdNo,// String
-            "extData": {
-               'fieldList': [{
-                     'title': '采购类型',
-                     'type': 'text',
-                     'value': '市场活动',
-               },
-               {
-                     'title': '订单链接',
-                     'type': 'link',
-                     'value': 'https://work.weixin.qq.com',
-               }],
-               }
-            },
-            function(res) {
-               // 输出接口的回调信息
-               console.log(res);
-            }
-         );
+      
+      addSchedule(){
+         let attendsStrArr = this.attends_str.split(",")
+         let attendsArr = attendsStrArr.map(function(item,index){
+            let json = {}
+            json.userid = item;
+            return json
+         });
+         let params = {
+            start_time:this.start_time,
+            end_time:this.end_time,
+            summary:this.summary,
+            calendar_id:this.calendar_id,  
+            organize_user_id:this.organize_user_id,
+            attends:attendsArr,
+         }
+
+         addSchedule(params).then((res)=>{
+               this.schedule_id =  res.data.schedule_id
+         });
       },
 
-      getJsSign(){
-         let   url =  window.location.href.split('#')[0]
-         let params = {'url':url}
-         jsSign(params).then((res)=>{
-            //获取签名
-            wx.config({
-               beta: true,// 必须这么写，否则wx.invoke调用形式的jsapi会有问题
-               debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-               appId: res.data.appId, // 必填，企业微信的corpID
-               timestamp:res.data.timestamp , // 必填，生成签名的时间戳
-               nonceStr: res.data.nonceStr, // 必填，生成签名的随机串
-               signature: res.data.signature,// 必填，签名，见 附录-JS-SDK使用权限签名算法
-               jsApiList: ['thirdPartyOpenPage'] // 必填，需要使用的JS接口列表，凡是要调用的接口都需要传进来
-           
-            });
-         })
-
-         wx.ready(function(){
-            jsAgentSign(params).then((res)=>{
-                 wx.agentConfig({
-                     corpid: res.data.corpId, // 必填，企业微信的corpid，必须与当前登录的企业一致
-                     agentid: res.data.agentId, // 必填，企业微信的应用id （e.g. 1000247）
-                     timestamp: res.data.timestamp, // 必填，生成签名的时间戳
-                     nonceStr: res.data.nonceStr, // 必填，生成签名的随机串
-                     signature: res.data.signature,// 必填，签名，见附录-JS-SDK使用权限签名算法
-                     jsApiList: ['thirdPartyOpenPage'], //必填，传入需要使用的接口名称
-                     success: function(res) {
-                        // 回调
-                        console.log(res);
-                     },
-                     fail: function(res) {
-                        if(res.errMsg.indexOf('function not exist') > -1){
-                              alert('版本过低请升级')
-                        }
-                     }
-                  });
-                  
-             })
-             wx.checkJsApi({
-               jsApiList: ['thirdPartyOpenPage'], // 需要检测的JS接口列表，所有JS接口列表见附录2,
-               success: function(res) {
-                  console.log(res)
-                  // 以键值对的形式返回，可用的api值true，不可用为false
-                  // 如：{"checkResult":{"chooseImage":true},"errMsg":"checkJsApi:ok"}
-               }
-            });
-           // alert("ready.config成功")
-            // config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。
+      getScheduleList(){
+         let params = {'calendar_id':this.calendar_id}
+         getScheduleList(params).then((res)=>{
+                console.log(res)
+                alert(  JSON.stringify(res)  )
          });
+      },
 
-
-         wx.error(function(res){
-           // alert(  JSON.stringify(res)  )
-
-            // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
+      getSchedule(){
+         let params = {'schedule_id':this.schedule_id}
+         getSchedule(params).then((res)=>{
+                console.log(res)
+                alert(  JSON.stringify(res)  )
          });
-    
-      }
+      },
+
+      addMeeting(){
+           let attendsStrArr = this.attends_str.split(",")
+         let attendsArr = attendsStrArr.map(function(item,index){
+            return item
+         });
+         let params = {
+            start_time:this.start_time,
+            duration:this.duration,
+            title:this.title,
+            type:this.type,  
+            organize_user_id:this.organize_user_id,
+            attends:attendsArr,
+         }
+
+         addMeeting(params).then((res)=>{
+               this.metting_id =  res.data.meetingid
+         });
+      },
+      
+      getMeetingDetail(){
+         let params = {'metting_id':this.metting_id}
+         getMeetingDetail(params).then((res)=>{
+                console.log(res)
+                alert(  JSON.stringify(res)  )
+         });
+      },
+      
+      getUserMeeting(){
+         let params = {'user_id':this.user_id}
+         getUserMeeting(params).then((res)=>{
+                console.log(res)
+                alert(  JSON.stringify(res)  )
+         });
+      },
+
    },
 }
 </script>

@@ -50,13 +50,22 @@
             </div>
          </div>
 
-             <div class="weui-flex">
+        <div class="weui-flex">
             <div class="weui-flex__item">
               <div class="placeholder">
                 <router-link to="/oa" class="weui-btn weui-btn_mini weui-btn_primary" >OA相关</router-link>
              </div>
             </div>
          </div>
+
+
+        <div class="weui-flex">
+            <div class="weui-flex__item">
+              <div class="placeholder">
+                  <router-link to="/eff" class="weui-btn weui-btn_mini weui-btn_primary">效率工具</router-link>
+             </div>
+            </div>
+        </div>
 
         <div class="weui-flex">
             <div class="weui-flex__item">

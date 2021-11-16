@@ -13,6 +13,7 @@ import Media from '../views/Media.vue'
 import Message from '../views/Message.vue'
 import Agent from '../views/Agent.vue'
 import Oa from '../views/Oa.vue'
+import Efficiency from '../views/Efficiency.vue'
 import ExtContact from '../views/ExtContact.vue'
 
 // 不重定向白名单
@@ -149,6 +150,15 @@ const routes = [
         path: 'oa', 
         name: 'Oa',
         component: Oa ,
+        meta: {
+         title: 'oa',
+         keepAlive: true,
+        },
+      },
+      {
+        path: 'eff', 
+        name: 'Eff',
+        component: Efficiency ,
         meta: {
          title: 'oa',
          keepAlive: true,
