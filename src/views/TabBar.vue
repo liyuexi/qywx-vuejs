@@ -1,7 +1,13 @@
 <template>
-<div class="page">
+
  
     <div class="weui-tabbar">
+
+        <router-link  to="/tobdev" class="weui-tabbar__item" active-class="weui-bar__item_on">
+            <!-- <span class="weui-tabbar__icon"  ></span> -->
+            <p class="weui-tabbar__label qywx-tabbar-item">设置</p>
+        </router-link>
+        
 
         <router-link  to="/auth" class="weui-tabbar__item" active-class="weui-bar__item_on">
             <!-- <span class="weui-tabbar__icon"  ></span> -->
@@ -18,7 +24,8 @@
             <p class="weui-tabbar__label qywx-tabbar-item">我的</p>
         </router-link>
         
-    </div>
+ 
+ 
 </div>
 
 

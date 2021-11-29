@@ -15,6 +15,7 @@ import Agent from '../views/Agent.vue'
 import Oa from '../views/Oa.vue'
 import Efficiency from '../views/Efficiency.vue'
 import ExtContact from '../views/ExtContact.vue'
+import TobDev from '../views/TobDev.vue'
 
 // 不重定向白名单
 const noUserWhiteList = [];
@@ -173,7 +174,16 @@ const routes = [
          keepAlive: true,
        },
       },
-
+      {
+        path: 'tobdev', 
+        name: 'TobDev',
+        component: TobDev ,
+        meta: {
+         title: 'ToB Dev',
+         keepAlive: true,
+       },
+      },
+      
     ]
 
   }

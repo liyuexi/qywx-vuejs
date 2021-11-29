@@ -1,14 +1,19 @@
 import axios from 'axios'
 import store from '../store'
 import router from '../router'
+import { AppService } from '../services/AppStorageService'
 
+
+let corpId =  AppService.getCorpId() == '' ?  import.meta.env.VITE_CORP_ID   :  AppService.getCorpId() 
+let apiUrl =  AppService.getApiUrl() == '' ?   import.meta.env.VITE_API_URL :  AppService.getApiUrl() 
 
 // 创建axios实例
 const service = axios.create({
-  baseURL: import.meta.env.VITE_API_URL, // api的base_url
+  baseURL: apiUrl, // api的base_url
   timeout: 15000, // 请求超时时间
   withCredentials: false,
 })
+
 
 // request拦截器
 service.interceptors.request.use(config => {
@@ -24,7 +29,7 @@ service.interceptors.request.use(config => {
   //     }
   //   }
   // }
-  let corpId = import.meta.env.VITE_CORP_ID
+  
   if(config.method=="post"){
     if(config.data instanceof FormData){
       config.data.append('corp_id',corpId);
