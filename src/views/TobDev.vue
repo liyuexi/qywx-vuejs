@@ -14,7 +14,7 @@
                   地址可带端口如:9900结束请勿加/<br/>
                   保存时后端url会保存在当前浏览器 <br/>
                   前端所有api请求都会请求到后端url<br/>
-                <select v-model="selected">
+                <select v-model="api_env">
                   <option  value="1">ToB Dev 官方线上后端</option>
                   <option value="2"> 自有运行ToB Dev后端</option>
                 </select> <br/>
@@ -65,6 +65,7 @@ export default {
   name: 'TobDev',
    data() {
     return {
+        api_env:1,
         api_url:'',
         corp_id:'',
         agent_id: '',
