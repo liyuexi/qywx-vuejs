@@ -13,7 +13,7 @@ https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzA5ODcyODY0Nw==&action=getalbum&a
 后端java+springboot:https://github.com/liyuexi/qywx-inner-java      
 
 在线Demo:  
-https://h5test.tobdev.com   
+http://h5test.tobdev.com   
 进入应用后点菜单设置进行应用设置
 
 ## 自建自建内部应用前端vite+vuejs Demo
