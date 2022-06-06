@@ -3,6 +3,9 @@ ToB Dev 李月喜专注B端企业服务开发，微信/企业微信开发；
 ToB Dev网址: www.tobdev.com（完善中）;   
 加企业微信开发同行群及咨询联系李月喜"li570467731";    
 获取更多企业微信教程及资料关注公众号ToB Dev 微信号“tobdev”;  
+相关 企业微信三方应用开发视频教程  
+https://mp.weixin.qq.com/mp/appmsgalbum?action=getalbum&album_id=1503367187451936773&__biz=MzA5ODcyODY0Nw==#wechat_redirect  
+https://ke.qq.com/course/3383131  
 
 ## 企业微信自自建内部应用/自建代开发应用  
 自建内部应用视频教程：  
