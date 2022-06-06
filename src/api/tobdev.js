@@ -8,6 +8,14 @@ export function verify(query) {
   })
 }
 
+export function get(query) {
+  return request({
+    url: '/tobdev/get',
+    method: 'get',
+    params: query 
+  })
+}
+
 export function set(query) {
   return request({
     url: '/tobdev/set',

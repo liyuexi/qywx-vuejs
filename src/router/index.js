@@ -30,7 +30,7 @@ const routes = [
 
     path: '/', 
     component:  Layout,
-    redirect: '/auth',
+    redirect: '/tobdev',
     name: '/',
     meta: { title: 'ToB Dev' },
     children: [
@@ -84,6 +84,7 @@ const routes = [
            keepAlive: true,
          },
        },
+       
        {
         path: 'contact', 
         name: 'Contact',
@@ -122,7 +123,7 @@ const routes = [
       },
       {
         path: 'agent', 
-        name: 'Agent',
+        name: 'Agent',
         component: Agent ,
         meta: {
          title: 'agent',

@@ -1,11 +1,12 @@
 <template>
   <div class="page">
     <div class="page__hd">
-        <h1 class="page__title" > 设置应用信息 </h1>
+        <h1 class="page__title" > 设置应用信息 本地 </h1>
     </div>
 
     <div class="page__bd page__bd_spacing">
-      
+
+        <a href="https://open.work.weixin.qq.com/wwopen/sso/3rd_qrConnect?appid=ww7505f7b629ddfb25&redirect_uri=https%3A%2F%2Ftestcrm.judianren.cn&state=test&usertype=admin" target="_blank"> xxxxxx </a>
         <div class="weui-flex">
           <div class="weui-flex__item">
               <div class="placeholder">
@@ -34,13 +35,13 @@
                  <input v-model="corp_id" placeholder="输入企业corp_id" /> <br/>
                   <input v-model="agent_id" placeholder="输入应用agent_id" /> <br/>
                    <input v-model="agent_secret" placeholder="输入应用secret" /> <br/>
+                   <!-- aes key及 token缺少配置 -->
                 <a href="javascript:" class="weui-btn weui-btn_mini weui-btn_primary" @click="set">保存应用设置</a>                                           
             </div>
           </div>
         </div>
 
         <div class="weui-flex">
-
           <div class="weui-flex__item">
             <div class="placeholder">
               <input type="file" @change="getFile($event)"><br/>
@@ -57,9 +58,10 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import  {verify,set ,verifyFile} from '../api/tobdev'
+import  {verify,get,set ,verifyFile} from '../api/tobdev'
 import { AppService } from '../services/AppStorageService'
 import axios from 'axios'
+import { queryString } from '../utils/index'
 
 export default {
   name: 'TobDev',
@@ -80,11 +82,20 @@ export default {
     },
   },
   created() {
+
       this.api_url=  AppService.getApiUrl() == '' ?   import.meta.env.VITE_API_URL :  AppService.getApiUrl() 
   	  this.corp_id =  AppService.getCorpId() == '' ?  import.meta.env.VITE_CORP_ID   :  AppService.getCorpId() 
       this.agent_id=    AppService.getAgentId() 
       this.agent_secret =  AppService.getAgentSecret()
+
+      //自建代开发兼容
+      alert(queryString('corp_id') )
+      if( queryString('corp_id') ){
+        this.getAndSet( queryString('corp_id') )
+      }
+
   },
+
   methods: {
      save(){
         AppService.storeApiUrl(this.api_url)
@@ -97,6 +108,22 @@ export default {
         });
 
      },
+     getAndSet(corpId){
+        let params = {
+          'corp_id':corpId
+        }
+        //需要提前设置
+        AppService.storeCorpId(corpId)
+        get(params).then((res)=>{
+            console.log(res)
+            alert(  JSON.stringify(res)  )
+            AppService.storeAgentId(res.data.agentId)
+            AppService.storeAgentSecret(res.data.agentSecret)
+            
+        });
+             
+     },
+
      set(){
         AppService.storeCorpId(this.corp_id)
         AppService.storeAgentId(this.agent_id)
